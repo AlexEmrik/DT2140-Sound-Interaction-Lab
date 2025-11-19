@@ -45,5 +45,31 @@ function setMotionListeners() {
 }
 
 //==========================================================================================
+// Enable audio and motion sensors after a user gesture
+function enableAudioAndSensors() {
+
+  // 🔊 Resume audio if needed
+  if (window.audioContext && audioContext.state === "suspended") {
+    audioContext.resume().then(() => {
+      console.log("Audio resumed");
+    });
+  }
+
+  // 📱 Request motion permission if the browser requires it (iOS & some Android)
+  if (typeof DeviceMotionEvent !== "undefined" &&
+      typeof DeviceMotionEvent.requestPermission === "function") {
+    DeviceMotionEvent.requestPermission()
+      .then(response => {
+        if (response !== "granted") {
+          console.warn("Motion permission denied");
+        }
+      })
+      .catch(console.error);
+  }
+
+  console.log("Audio + sensors enabled");
+}
+
+//==========================================================================================
 
 const audioContext = new AudioContext();

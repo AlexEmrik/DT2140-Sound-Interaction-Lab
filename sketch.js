@@ -117,7 +117,7 @@ function setup() {
   buttons[0].id(buttonIDs[0]);
   buttons[0].parent(buttonBox.elt);
   buttons[0].mousePressed(() => {
-    enableAudioAndSensors();  
+    enableAudioAndSensors();  // Why was this not already added here???
     contextAudioStart();      
 });
 }
