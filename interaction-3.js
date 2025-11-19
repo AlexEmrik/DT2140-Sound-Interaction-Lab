@@ -57,7 +57,10 @@ function accelerationChange(accx, accy, accz) {
 
 function rotationChange(rotx, roty, rotz) {
     if(roty>0){
-
+        dspNode.setParamValue("/door/door/positoon", roty/80);
+    }
+    else {
+        dspNode.setParamValue("/door/door/positoon", 0);
     }
 
 }
