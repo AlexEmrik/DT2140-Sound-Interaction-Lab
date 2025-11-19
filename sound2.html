@@ -8,12 +8,12 @@
       content="no-cache, max-age=0, must-revalidate"
     />
     <title>p5.js faust example</title>
-    <link rel="stylesheet" href="styles.css" /> 
+    <link rel="stylesheet" href="styles.css" />
     <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.js"></script>
     <script src="dsp.js"></script>
   </head>
 
-  <body class="grid-container fullbody" onclick="enableAudioAndSensors()">
+  <body class="grid-container fullbody">
     <nav class="primary-nav">
       <li><a href="index.html">Interaction 1</a></li>
       <li><a href="sound2.html">Interaction 2</a></li>
@@ -22,8 +22,17 @@
 
     <div id="info">
       <p>
-        <b>You phone is now a rocket, point it upwards to start the engine</b>
+        <b>Insert a description of your sonic interaction design here! </b>
         <br />
+        <br />
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut adipisci,
+        non quasi vel vero odit debitis recusandae impedit laborum id tempora!
+        Enim accusantium a voluptatum nisi ea placeat? Accusamus, perferendis?
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur
+        accusantium suscipit eaque similique odit deserunt iure est unde libero
+        pariatur doloribus voluptatibus voluptatum cupiditate error, dolorem
+        eius eos. Provident, ullam.
+      </p>
     </div>
 
     <footer>
@@ -39,27 +48,6 @@
       </p>
     </footer>
   </body>
-
-  <script>
-  function enableAudioAndSensors() {
-    if (typeof audioContext !== "undefined") {
-      audioContext.resume();
-    }
-
-    if (
-      typeof DeviceMotionEvent !== "undefined" &&
-      typeof DeviceMotionEvent.requestPermission === "function"
-    ) {
-      DeviceMotionEvent.requestPermission()
-        .then((response) => {
-          if (response !== "granted") {
-            alert("Please allow motion sensor access.");
-          }
-        })
-        .catch(console.error);
-    }  }
-</script>
-
   <script src="helpers.js"></script>
   <script src="interaction-2.js"></script>
   <script src="sketch.js"></script>

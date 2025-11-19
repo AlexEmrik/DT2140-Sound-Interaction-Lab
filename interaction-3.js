@@ -12,7 +12,7 @@ let dspNodeParams = null;
 let jsonParams = null;
 
 // Change here to ("tuono") depending on your wasm file name
-const dspName = "engine";
+const dspName = "brass";
 const instance = new FaustWasm2ScriptProcessor(dspName);
 
 // output to window or npm package module
@@ -51,36 +51,11 @@ brass.createDSP(audioContext, 1024)
 //
 //==========================================================================================
 
-let rocketArmed = false;
-let engineStarted = false;
-
-function isPointingUpwards(rotx) {
-    const ANGLE_UP = 90;
-    const TOLERANCE = 10; 
-    return Math.abs(rotx - ANGLE_UP) <= TOLERANCE;
-}
-
 function accelerationChange(accx, accy, accz) {
     // playAudio()
 }
 
 function rotationChange(rotx, roty, rotz) {
-    const upright = isPointingUpwards(rotx)
-    if (upright && !rocketArmed){
-        rocketArmed = true
-
-        if (!engineStarted && engineNode) {
-            engineStarted = true;
-            console.log("Engine ignition!");
-            engineNode.setParamValue("/engine/gate", 1);
-            setTimeout(() => engineNode.setParamValue("/engine/gate", 0), 200);
-        }
-    }
-    else if (!upright && rocketArmed) {
-        rocketArmed = false;
-        console.log("Rocket of intended path");
-    }
-
 }
 
 function mousePressed() {

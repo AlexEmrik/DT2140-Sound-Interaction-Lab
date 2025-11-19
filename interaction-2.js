@@ -51,27 +51,11 @@ bells.createDSP(audioContext, 1024)
 //
 //==========================================================================================
 
-let engineStarted = false;
-
-function isPointingUpwards(rotx) {
-    const ANGLE_UP = 90;
-    const TOLERANCE = 10; 
-    return Math.abs(rotx - ANGLE_UP) <= TOLERANCE;
-}
-
 function accelerationChange(accx, accy, accz) {
     // playAudio()
 }
 
 function rotationChange(rotx, roty, rotz) {
-    const upright = isPointingUpwards(rotx)
-    if (upright && !rocketArmed){
-        rocketArmed = true;
-
-        console.log("Engine ignition!");
-        playAudio();
-    }
-
 }
 
 function mousePressed() {
@@ -111,20 +95,13 @@ function getMinMaxParam(address) {
 //
 //==========================================================================================
 
-
 function playAudio() {
     if (!dspNode) {
-        console.log("no dspNode")
         return;
     }
     if (audioContext.state === 'suspended') {
-        console.log("=suspended")
         return;
     }
-    // Edit here the addresses ("/thunder/rumble") depending on your WASM controls (you can see 
-    // them printed on the console of your browser when you load the page)
-    // For example if you change to a bell sound, here you could use "/churchBell/gate" instead of
-    // "/thunder/rumble".
     dspNode.setParamValue("/englishBell/gate", 1)
     setTimeout(() => { dspNode.setParamValue("/englishBell/gate", 0) }, 100);
 }
