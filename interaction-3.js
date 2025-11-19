@@ -57,7 +57,7 @@ wind.createDSP(audioContext, 1024)
 let smoothedForce = 0;     
 const MAX_FORCE = 1.0;     
 const SMOOTHING = 0.15;    
-const SENSITIVITY = 1000.0;
+const SENSITIVITY = 20.0;
 const BASE_FORCE = 0.0;    
 
 function accelerationChange(accx, accy, accz) {
