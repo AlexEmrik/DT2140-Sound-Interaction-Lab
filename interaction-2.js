@@ -64,7 +64,8 @@ function rotationChange(rotx, roty, rotz) {
 }
 
 function mousePressed() {
-    playAudioEgine()
+    dspNode.setParamValue("/engine/gate", 1)
+    dspNode.setParamValue("/engine/maxSpeed", 1);
     // Use this for debugging from the desktop!
 }
 
