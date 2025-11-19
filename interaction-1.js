@@ -97,9 +97,11 @@ function getMinMaxParam(address) {
 
 function playAudio() {
     if (!dspNode) {
+        console.log("dspNode suspended");
         return;
     }
     if (audioContext.state === 'suspended') {
+        console.log("AudioContext suspended");
         return;
     }
     // Edit here the addresses ("/thunder/rumble") depending on your WASM controls (you can see 
