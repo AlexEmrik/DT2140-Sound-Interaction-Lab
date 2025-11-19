@@ -40,6 +40,32 @@
     </footer>
   </body>
 
+  <script>
+  function enableAudioAndSensors() {
+
+  // 🔊 Resume audio if needed
+  if (window.audioContext && audioContext.state === "suspended") {
+    audioContext.resume().then(() => {
+      console.log("Audio resumed");
+    });
+  }
+
+  // 📱 Request motion permission if the browser requires it (iOS & some Android)
+  if (typeof DeviceMotionEvent !== "undefined" &&
+      typeof DeviceMotionEvent.requestPermission === "function") {
+    DeviceMotionEvent.requestPermission()
+      .then(response => {
+        if (response !== "granted") {
+          console.warn("Motion permission denied");
+        }
+      })
+      .catch(console.error);
+  }
+
+  console.log("Audio + sensors enabled");
+}
+</script>
+
   <script src="helpers.js"></script>
   <script src="interaction-1.js"></script>
   <script src="sketch.js"></script>
