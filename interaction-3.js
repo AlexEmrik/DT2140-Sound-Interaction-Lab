@@ -51,8 +51,12 @@ wind.createDSP(audioContext, 1024)
 //
 //==========================================================================================
 
+// /wind/volume
+// /wind/wind/force
+
 function accelerationChange(accx, accy, accz) {
-    // playAudio()
+    dspNode.setParamValue("/wind/wind/force", max(accx, accy, accz));
+
 }
 
 function rotationChange(rotx, roty, rotz) {
