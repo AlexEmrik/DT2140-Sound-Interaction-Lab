@@ -59,7 +59,7 @@ function accelerationChange(accx, accy, accz) {
 
     const motion = Math.max(0, total - 9.8);
 
-    let force = motion / 10.0; 
+    let force = motion / 5.0; 
     if (force > 1.0) force = 1.0;
 
     dspNode.setParamValue("/wind/wind/force", force);
