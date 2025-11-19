@@ -56,6 +56,7 @@ function accelerationChange(accx, accy, accz) {
 }
 
 function rotationChange(rotx, roty, rotz) {
+    movetimer = millis();
     if (rotx > 90){
         playAudioEgine()
     }
