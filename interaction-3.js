@@ -57,17 +57,16 @@ wind.createDSP(audioContext, 1024)
 let smoothedForce = 0;     
 const MAX_FORCE = 1.0;     
 const SMOOTHING = 0.15;    
+const SENSITIVITY = 50.0;
 const BASE_FORCE = 0.0;    
 
 function accelerationChange(accx, accy, accz) {
-    if (!dspNode) return;
-    if (audioContext.state === "suspended") return;
 
     const total = Math.sqrt(accx * accx + accy * accy + accz * accz);
 
     const extra = Math.max(0, total - 9.8);
 
-    let targetForce = extra / 8.0;
+    let targetForce = extra / SENSITIVITY;
 
     if (targetForce > MAX_FORCE) targetForce = MAX_FORCE;
     if (targetForce < 0) targetForce = 0;
