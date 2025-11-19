@@ -12,7 +12,7 @@ let dspNodeParams = null;
 let jsonParams = null;
 
 // Change here to ("tuono") depending on your wasm file name
-const dspName = "bells";
+const dspName = "engine";
 const instance = new FaustWasm2ScriptProcessor(dspName);
 
 // output to window or npm package module
@@ -127,7 +127,7 @@ function playAudioEngine() {
         return;
     }
     dspNode.setParamValue("/engine/gate", 1)
-    setTimeout(() => { dspNode.setParamValue("/engine/gate", 0) }, 100);
+    setTimeout(() => { dspNode.setParamValue("/engine/gate", 0) }, 200);
 }
 
 //==========================================================================================
