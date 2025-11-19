@@ -97,19 +97,19 @@ function getMinMaxParam(address) {
 
 function playAudio() {
     if (!dspNode) {
-        console.log("dspNode suspended");
+        console.log("no dspNode")
         return;
     }
     if (audioContext.state === 'suspended') {
-        console.log("AudioContext suspended");
+        console.log("=suspended")
         return;
     }
     // Edit here the addresses ("/thunder/rumble") depending on your WASM controls (you can see 
     // them printed on the console of your browser when you load the page)
     // For example if you change to a bell sound, here you could use "/churchBell/gate" instead of
     // "/thunder/rumble".
-    dspNode.setParamValue("/churchBell/gate", 1)
-    setTimeout(() => { dspNode.setParamValue("/churchBell/gate", 0) }, 100);
+    dspNode.setParamValue("/englishBell/gate", 1)
+    setTimeout(() => { dspNode.setParamValue("/english/gate", 0) }, 100);
 }
 
 //==========================================================================================
