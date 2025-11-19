@@ -40,26 +40,6 @@
     </footer>
   </body>
 
-  <script>
-  function enableAudioAndSensors() {
-    if (typeof audioContext !== "undefined") {
-      audioContext.resume();
-    }
-
-    if (
-      typeof DeviceMotionEvent !== "undefined" &&
-      typeof DeviceMotionEvent.requestPermission === "function"
-    ) {
-      DeviceMotionEvent.requestPermission()
-        .then((response) => {
-          if (response !== "granted") {
-            alert("Please allow motion sensor access.");
-          }
-        })
-        .catch(console.error);
-    }  }
-</script>
-
   <script src="helpers.js"></script>
   <script src="interaction-1.js"></script>
   <script src="sketch.js"></script>
