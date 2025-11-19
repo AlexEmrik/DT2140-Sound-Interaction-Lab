@@ -64,8 +64,8 @@ function rotationChange(rotx, roty, rotz) {
 }
 
 function mousePressed() {
-    dspNode.setParamValue("/engine/gate", 1)
-    dspNode.setParamValue("/engine/maxSpeed", 1);
+    movetimer = millis();
+    statusLabels[2].style("color", "pink");
     // Use this for debugging from the desktop!
 }
 
