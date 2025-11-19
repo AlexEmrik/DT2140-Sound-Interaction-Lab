@@ -54,15 +54,29 @@ wind.createDSP(audioContext, 1024)
 // /wind/volume
 // /wind/wind/force
 
+let smoothedForce = 0;     
+const MAX_FORCE = 1.0;     
+const SMOOTHING = 0.15;    
+const BASE_FORCE = 0.0;    
+
 function accelerationChange(accx, accy, accz) {
-    const total = Math.sqrt(accx*accx + accy*accy + accz*accz);
+    if (!dspNode) return;
+    if (audioContext.state === "suspended") return;
 
-    const motion = Math.max(0, total - 9.8);
+    const total = Math.sqrt(accx * accx + accy * accy + accz * accz);
 
-    let force = motion / 5.0; 
-    if (force > 1.0) force = 1.0;
+    const extra = Math.max(0, total - 9.8);
 
-    dspNode.setParamValue("/wind/wind/force", force);
+    let targetForce = extra / 8.0;
+
+    if (targetForce > MAX_FORCE) targetForce = MAX_FORCE;
+    if (targetForce < 0) targetForce = 0;
+
+    smoothedForce = smoothedForce + SMOOTHING * (targetForce - smoothedForce);
+
+    const finalForce = BASE_FORCE + (1.0 - BASE_FORCE) * smoothedForce;
+
+    dspNode.setParamValue("/wind/wind/force", finalForce);
 }
 
 function rotationChange(rotx, roty, rotz) {
