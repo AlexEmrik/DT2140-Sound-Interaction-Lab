@@ -63,9 +63,10 @@ function accelerationChange(accx, accy, accz) {
         Math.abs(accz)
     );
 
-    let force = Math.min(rawForce / 10, 1); // tweak divisor to taste
+    let force = Math.min(rawForce/10 , 1); // tweak divisor to taste
 
     dspNode.setParamValue("/wind/wind/force", force);
+    dspNode.setParamValue("/wind/volume", force);
 }
 
 function rotationChange(rotx, roty, rotz) {
