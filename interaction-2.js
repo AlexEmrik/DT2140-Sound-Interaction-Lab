@@ -58,7 +58,10 @@ function accelerationChange(accx, accy, accz) {
 function rotationChange(rotx, roty, rotz) {
     movetimer = millis();
     if (rotx > 90){
-        playAudioEgine()
+        dspNode.setParamValue("/engine/gate", 1)
+    }
+    else{
+        dspNode.setParamValue(("/engine/gate", 0))
     }
 }
 
@@ -98,16 +101,16 @@ function getMinMaxParam(address) {
 //
 //==========================================================================================
 
-function playAudioEgine() {
-    if (!dspNode) {
-        return;
-    }
-    if (audioContext.state === 'suspended') {
-        return;
-    }
-    dspNode.setParamValue("/engine/gate", 1)
-    setTimeout(() => { dspNode.setParamValue("/engine/gate", 0) }, 100);
-}
+//function playAudioEgine() {
+//    if (!dspNode) {
+//        return;
+//    }
+//    if (audioContext.state === 'suspended') {
+//        return;
+//    }
+//    dspNode.setParamValue("/engine/gate", 1)
+    //setTimeout(() => { dspNode.setParamValue("/engine/gate", 0) }, 10000);
+//}
 
 //==========================================================================================
 // END
