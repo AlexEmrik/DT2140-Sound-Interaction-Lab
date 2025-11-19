@@ -72,7 +72,8 @@ function rotationChange(rotx, roty, rotz) {
         if (!engineStarted && engineNode) {
             engineStarted = true;
             console.log("Engine ignition!");
-            playAudioEngine()
+            engineNode.setParamValue("/engine/gate", 1);
+            setTimeout(() => engineNode.setParamValue("/engine/gate", 0), 200);
         }
     }
     else if (!upright && rocketArmed) {
