@@ -51,11 +51,35 @@ bells.createDSP(audioContext, 1024)
 //
 //==========================================================================================
 
+let rocketArmed = false;
+let engineStarted = false;
+
+function isPointingUpwards(rotx) {
+    const ANGLE_UP = 90;
+    const TOLERANCE = 10; 
+    return Math.abs(rotx - ANGLE_UP) <= TOLERANCE;
+}
+
 function accelerationChange(accx, accy, accz) {
     // playAudio()
 }
 
 function rotationChange(rotx, roty, rotz) {
+    const upright = isPointingUpwards(rotx)
+    if (upright && !rocketArmed){
+        rocketArmed = true
+
+        if (!engineStarted && engineNode) {
+            engineStarted = true;
+            console.log("Engine ignition!");
+            playAudioEngine()
+        }
+    }
+    else if (!upright && rocketArmed) {
+        rocketArmed = false;
+        console.log("Rocket of intended path");
+    }
+
 }
 
 function mousePressed() {
@@ -95,15 +119,15 @@ function getMinMaxParam(address) {
 //
 //==========================================================================================
 
-function playAudio() {
+function playAudioEngine() {
     if (!dspNode) {
         return;
     }
     if (audioContext.state === 'suspended') {
         return;
     }
-    dspNode.setParamValue("/englishBell/gate", 1)
-    setTimeout(() => { dspNode.setParamValue("/englishBell/gate", 0) }, 100);
+    dspNode.setParamValue("/engine/gate", 1)
+    setTimeout(() => { dspNode.setParamValue("/engine/gate", 0) }, 100);
 }
 
 //==========================================================================================
