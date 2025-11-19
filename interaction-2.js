@@ -12,7 +12,7 @@ let dspNodeParams = null;
 let jsonParams = null;
 
 // Change here to ("tuono") depending on your wasm file name
-const dspName = "engine";
+const dspName = "bells";
 const instance = new FaustWasm2ScriptProcessor(dspName);
 
 // output to window or npm package module
@@ -25,7 +25,7 @@ if (typeof module === "undefined") {
 }
 
 // The name should be the same as the WASM file, so change tuono with brass if you use brass.wasm
-engine.createDSP(audioContext, 1024)
+bells.createDSP(audioContext, 1024)
     .then(node => {
         dspNode = node;
         dspNode.connect(audioContext.destination);
@@ -72,8 +72,7 @@ function rotationChange(rotx, roty, rotz) {
         if (!engineStarted && engineNode) {
             engineStarted = true;
             console.log("Engine ignition!");
-            engineNode.setParamValue("/engine/gate", 1);
-            setTimeout(() => engineNode.setParamValue("/engine/gate", 0), 200);
+            playAudio();
         }
     }
     else if (!upright && rocketArmed) {
@@ -120,15 +119,22 @@ function getMinMaxParam(address) {
 //
 //==========================================================================================
 
-function playAudioEngine() {
+
+function playAudio() {
     if (!dspNode) {
+        console.log("no dspNode")
         return;
     }
     if (audioContext.state === 'suspended') {
+        console.log("=suspended")
         return;
     }
-    dspNode.setParamValue("/engine/gate", 1)
-    setTimeout(() => { dspNode.setParamValue("/engine/gate", 0) }, 200);
+    // Edit here the addresses ("/thunder/rumble") depending on your WASM controls (you can see 
+    // them printed on the console of your browser when you load the page)
+    // For example if you change to a bell sound, here you could use "/churchBell/gate" instead of
+    // "/thunder/rumble".
+    dspNode.setParamValue("/englishBell/gate", 1)
+    setTimeout(() => { dspNode.setParamValue("/englishBell/gate", 0) }, 100);
 }
 
 //==========================================================================================

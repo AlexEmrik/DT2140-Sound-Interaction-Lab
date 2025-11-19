@@ -72,8 +72,8 @@ function deviceTurned() {
     threshVals[1] = turnAxis;
 }
 function deviceShaken() {
-    shaketimer = millis();
-    statusLabels[0].style("color", "pink");
+    //shaketimer = millis();
+    //statusLabels[0].style("color", "pink");
     playAudio();
 }
 
