@@ -55,8 +55,17 @@ wind.createDSP(audioContext, 1024)
 // /wind/wind/force
 
 function accelerationChange(accx, accy, accz) {
-    dspNode.setParamValue("/wind/wind/force", max(accx, accy, accz));
 
+    // Take the strongest axis as "force"
+    let rawForce = Math.max(
+        Math.abs(accx),
+        Math.abs(accy),
+        Math.abs(accz)
+    );
+
+    let force = Math.min(rawForce / 10, 1); // tweak divisor to taste
+
+    dspNode.setParamValue("/wind/wind/force", force);
 }
 
 function rotationChange(rotx, roty, rotz) {
