@@ -58,8 +58,11 @@ function accelerationChange(accx, accy, accz) {
 function rotationChange(rotx, roty, rotz) {
     movetimer = millis();
     if (rotx > 90){
-        dspNode.setParamValue("/engine/gate", 1)
+        dspNode.setParamValue("/engine/gate", 1);
         dspNode.setParamValue("/engine/maxSpeed", 1);
+    }
+    else {
+        dspNode.setParamValue("/engine/gate", 0);
     }
 }
 

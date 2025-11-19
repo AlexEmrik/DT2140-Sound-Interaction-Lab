@@ -13,7 +13,7 @@
     <script src="dsp.js"></script>
   </head>
 
-  <body class="grid-container fullbody">
+  <body class="grid-container fullbody" onclick="enableAudioAndSensors()">
     <nav class="primary-nav">
       <li><a href="index.html">Interaction 1</a></li>
       <li><a href="sound2.html">Interaction 2</a></li>
@@ -48,6 +48,26 @@
       </p>
     </footer>
   </body>
+
+      <script>
+  function enableAudioAndSensors() {
+    if (typeof audioContext !== "undefined") {
+      audioContext.resume();
+    }
+
+    if (
+      typeof DeviceMotionEvent !== "undefined" &&
+      typeof DeviceMotionEvent.requestPermission === "function"
+    ) {
+      DeviceMotionEvent.requestPermission()
+        .then((response) => {
+          if (response !== "granted") {
+            alert("Please allow motion sensor access.");
+          }
+        })
+        .catch(console.error);
+    }  }
+</script>
   <script src="helpers.js"></script>
   <script src="interaction-3.js"></script>
   <script src="sketch.js"></script>
