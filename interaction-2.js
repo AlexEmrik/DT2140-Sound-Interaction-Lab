@@ -51,7 +51,6 @@ bells.createDSP(audioContext, 1024)
 //
 //==========================================================================================
 
-let rocketArmed = false;
 let engineStarted = false;
 
 function isPointingUpwards(rotx) {
@@ -67,17 +66,10 @@ function accelerationChange(accx, accy, accz) {
 function rotationChange(rotx, roty, rotz) {
     const upright = isPointingUpwards(rotx)
     if (upright && !rocketArmed){
-        rocketArmed = true
+        rocketArmed = true;
 
-        if (!engineStarted && engineNode) {
-            engineStarted = true;
-            console.log("Engine ignition!");
-            playAudio();
-        }
-    }
-    else if (!upright && rocketArmed) {
-        rocketArmed = false;
-        console.log("Rocket of intended path");
+        console.log("Engine ignition!");
+        playAudio();
     }
 
 }
